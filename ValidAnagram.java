@@ -20,8 +20,45 @@ public class ValidAnagram {
         return false;
     }
 
+    public static boolean isAnagram2(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+        int[] sCounter = new int[26];
+        int[] tCounter = new int[26];
+        for (int i = 0; i < s.length(); i++) {
+            sCounter[s.charAt(i) - 'a']++;
+            tCounter[t.charAt(i) - 'a']++;
+        }
+        for (int i = 0; i < tCounter.length; i++) {
+            if (sCounter[i] == tCounter[i]) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isAnagram3(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+        int[] table = new int[26];
+        for (int i = 0; i < s.length(); i++) {
+            table[s.charAt(i) - 'a']++;
+        }
+        for (int i = 0; i < t.length(); i++) {
+            table[t.charAt(i) - 'a']--;
+            if (table[t.charAt(i) - 'a'] < 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         String s = "anagram", t = "nagaram";
         System.out.println(isAnagram(s, t));
+        System.out.println(isAnagram2(s, t));
+        System.out.println(isAnagram3(s, t));
     }
 }
