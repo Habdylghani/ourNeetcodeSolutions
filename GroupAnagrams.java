@@ -10,9 +10,10 @@ public class GroupAnagrams {
         for (int i = 0; i < strs.length; i++) {
             char[] s = strs[i].toCharArray();
             Arrays.sort(s);
-            if (!map.containsKey(Arrays.toString(s))) {
-                map.put(Arrays.toString(s), new ArrayList<String>());
-            }
+            // if (!map.containsKey(Arrays.toString(s))) {
+            // map.put(Arrays.toString(s), new ArrayList<String>());
+            // }
+            map.computeIfAbsent(Arrays.toString(s), k -> new ArrayList<>());
             map.get(Arrays.toString(s)).add(strs[i]);
         }
         List<List<String>> values = new ArrayList<List<String>>();
