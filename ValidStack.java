@@ -2,6 +2,7 @@ import java.util.Stack;
 
 public class ValidStack {
     public static boolean isValid(String s) {
+        if (s.length() % 2 != 0) return false;
         Stack<Character> myStack = new Stack<>();
         for (Character c : s.toCharArray()) {
             if (c == '(' || c == '(' || c == '[' || c == '{') {
