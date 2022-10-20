@@ -19,28 +19,38 @@ public class MatrixExp1 {
 
     // power of matrix
     static int[][] power(int F[][], int n) {
+        int M[][] = F;
+        if (n == 3)
+            return M;
+     
+        power(F, n / 2);
+     
+        multiply(F, F);
+     
+        if (n%2 != 0)
+            multiply(F, M);
 
-        int M[][] = { { 1, 1, 1 }, { 1, 0, 0 },
+        /*
+         * int M[][] = { { 1, 1, 1 }, { 1, 0, 0 },
                 { 0, 1, 0 } };
-
-        for (int i = 2; i <= n; i++) {
+        for (int i = 1; i <= n; i++) {
             multiply(F, M);
         }
+         */
+        
         return F;
     }
 
-    static int findNthTerm(int n) {
-        int F[][] = { { 1, 1, 1 }, { 1, 0, 0 },
-                { 0, 1, 0 } };
-
+    static int findNthTerm(int F[][],int n) {
+        //int F[][] = { { 1, 1, 1 }, { 1, 0, 0 },{ 0, 1, 0 } };
         power(F, n - 2);
-        return F[0][0] + F[0][1];
+        return F[0][0] + F[0][1]+F[0][2];
     }
 
     public static void main(String[] args) {
-        int n = 8;
+        int n = 5;
+        int F[][] = { { 1, 1, 1 }, { 1, 0, 0 },{ 0, 1, 0 } };
 
-        System.out.println("F(5) is "
-                + findNthTerm(n));
+        System.out.println("F(5) is "+ findNthTerm(F,n));
     }
 }
